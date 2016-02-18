@@ -31,6 +31,3 @@ proguard/
 # Android Studio captures folder
 captures/
 
-# Eclipse project files
-.classpath
-.project
