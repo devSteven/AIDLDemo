@@ -9,11 +9,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * 客户端控制界面
@@ -93,16 +93,26 @@ public class MainActivity extends Activity implements OnClickListener {
 			// play
 			Log.i(TAG, "play button clicked");
 			try {
-				mService.play();
-			} catch (RemoteException e) {
+				if (mService != null) {
+					mService.play();
+				} else {
+					Toast.makeText(this, "服务连接失败", Toast.LENGTH_SHORT).show();
+					Log.e(TAG, "请安装服务");
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
 			// stop
 			Log.i(TAG, "stop button clicked");
 			try {
-				mService.stop();
-			} catch (RemoteException e) {
+				if (mService != null) {
+					mService.stop();
+				} else {
+					Toast.makeText(this, "服务连接失败", Toast.LENGTH_SHORT).show();
+					Log.e(TAG, "请安装服务");
+				}
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
